@@ -3,12 +3,14 @@ import requests
 import json
 import time
 import uuid
+import os
 from datetime import datetime
 from pathlib import Path
 
 # --- Configuration ---
-API_URL = "http://127.0.0.1:8000"
-HISTORY_FILE = Path("frontend/chat_history.json")
+# Use the environment variable if available (Docker), otherwise default to localhost
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
+HISTORY_FILE = Path(__file__).parent / "chat_history.json"
 
 st.set_page_config(
     page_title="AI Studio RAG",
