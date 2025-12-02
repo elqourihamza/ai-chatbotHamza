@@ -127,7 +127,7 @@ def ingest_pdf(file_path: str, doc_id: Optional[str] = None) -> str:
             documents=chunks,
             embedding=embeddings,
             index_name=PINECONE_INDEX_NAME,
-            namespace=None,
+            namespace=PINECONE_NAMESPACE if PINECONE_NAMESPACE else None,
         )
         print("--- UPLOAD COMPLETE ---")
         
@@ -142,7 +142,7 @@ def get_retriever_for_doc(doc_id: str):
     vectorstore = PineconeVectorStore.from_existing_index(
         index_name=PINECONE_INDEX_NAME,
         embedding=embeddings,
-        namespace=PINECONE_NAMESPACE,
+        namespace=PINECONE_NAMESPACE if PINECONE_NAMESPACE else None,
     )
     
     return vectorstore.as_retriever(
