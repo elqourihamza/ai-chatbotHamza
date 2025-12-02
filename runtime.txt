@@ -1,0 +1,2 @@
+# Azure Web App Configuration
+python_version = "3.11"
